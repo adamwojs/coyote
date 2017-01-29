@@ -7,6 +7,9 @@
 @import "../components/sidemenu";
 @import "../components/search";
 
+$header-footer-color: darken($body-bg, 0.8%);
+$header-footer-border: #c7c7c7;
+
 #user-nav-tabs {
   margin: 20px 0;
 }
@@ -149,3 +152,86 @@
   min-height: 68px;
   padding: 12px 0;
 }
+
+#users-header-container {
+  background-color: $header-footer-color;
+  border-bottom: 1px solid $header-footer-border;
+
+  .nav-tabs {
+    margin-bottom: -1px;
+    border-bottom: none;
+  }
+}
+
+#users-main-content {
+  padding-top: 15px;
+
+  .pagination {
+    margin-top: 5px;
+  }
+}
+
+#box-users {
+  table {
+    border: 1px solid $border-color;
+    background: #fff;
+    border-radius: 3px;
+    margin: 0 1px 1px 1px;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    td {
+      padding: 5px;
+      border-bottom: 1px solid $border-color;
+    }
+
+    .col-avatar {
+      width: 64px;
+    }
+
+    .col-body {
+      h2 {
+        font-size: 15px;
+        margin: 0 0 5px 0;
+        float: left;
+
+        @media screen and (max-width: $screen-xs) {
+          font-size: 14px;
+        }
+      }
+
+      p {
+        font-size: 12px;
+        clear: both;
+        padding: 0;
+        line-height: 1.4;
+        margin: 0;
+      }
+
+      small {
+        color: $gray-light;
+
+        a {
+          font-size: 11px;
+          color: inherit;
+        }
+      }
+
+      // extra margin for tags
+      .tag-clouds {
+        margin-top: 4px;
+      }
+
+      @media screen and (max-width: $screen-xs) {
+        padding-left: 5px;
+      }
+    }
+  }
+}
+

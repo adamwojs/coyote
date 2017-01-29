@@ -3,5 +3,77 @@
 {% block title %}Użytkownicy {{ parent() }}{% endblock %}
 
 {% block container %}
-    Lista użytkowników.
+    <div id="users-main-content" class="row">
+        <main class="col-lg-9 col-md-12">
+            <nav>
+                {{ pagination|raw }}
+            </nav>
+
+            <section class="panel panel-wrapper">
+                <div id="box-users" class="panel-body">
+                    <ul id="sort" class="hidden-xs">
+                        <li>{{ sortable('name', 'Alfabetycznie', ['name', 'asc']) }}</li>
+                        <li>{{ sortable('created_at', 'Data rejestracji') }}</li>
+                        <li>{{ sortable('reputation', 'Reputacja') }}</li>
+                        <li>{{ sortable('posts', 'Liczba postów') }}</li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+
+                    <table>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td class="col-avatar">
+                                    <div class="avatar">
+                                        <img class="img-responsive"
+                                             src="{{ user_photo(user.photo) }}" {{ not user.photo ? 'style="max-width: 64px"' }}>
+                                    </div>
+                                </td>
+                                <td class="col-body">
+                                    <h2>{{ link_to_profile(user.id, user.name) }}</h2>
+
+                                    {% if user.position %}
+                                        <p>{{ user.position }} {% if user.firm %}@ {{ user.firm }}{% endif %}</p>
+                                    {% endif %}
+                                </td>
+                                <td>{{ user.created_at|format_date(false) }}</td>
+                                <td><strong>{{ user.reputation }}</strong> reputacji</td>
+                                <td><strong>{{ user.posts }}</strong> postów</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <nav>
+                {{ pagination|raw }}
+            </nav>
+        </main>
+        <aside class="col-lg-3 col-lg-offset-0 col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3">
+
+        </aside>
+    </div>
+{% endblock %}
+
+{% block fixed %}
+    <div id="users-header-container">
+        <div class="row max-width">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#">Wszyscy</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ cdn('css/profile.css') }}">
+    {{ parent() }}
 {% endblock %}

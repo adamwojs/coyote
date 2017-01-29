@@ -56,6 +56,23 @@ class HomeController extends Controller
         $this->reputation = $reputation;
         $this->post = $post;
         $this->microblog = $microblog;
+
+        $this->breadcrumb->push('Użytkownicy', route('profile.list'));
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $this->user->resetCriteria();
+
+        $users = $this->user->paginate();
+
+        return $this->view('profile.list', [
+            'users'         => $users->items(),
+            'pagination'    => $users->render()
+        ]);
     }
 
     /**
@@ -63,7 +80,7 @@ class HomeController extends Controller
      * @param string $tab
      * @return \Illuminate\View\View
      */
-    public function index($user, $tab = 'reputation')
+    public function show($user, $tab = 'reputation')
     {
         $this->breadcrumb->push($user->name, route('profile', ['user' => $user->id]));
         $this->public['reputation_url'] = route('profile.history', [$user->id]);
