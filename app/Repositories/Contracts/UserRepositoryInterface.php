@@ -2,6 +2,8 @@
 
 namespace Coyote\Repositories\Contracts;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
 interface UserRepositoryInterface extends RepositoryInterface
 {
     /**
@@ -32,6 +34,14 @@ interface UserRepositoryInterface extends RepositoryInterface
      * @return \Coyote\User
      */
     public function newUser(array $data);
+
+    /**
+     * @param string $order
+     * @param string $direction
+     * @param int $perPage
+     * @return LengthAwarePaginator
+     */
+    public function paginate($order = 'users.created_at', $direction = 'DESC', $perPage = 12);
 
     /**
      * Pobiera reputacje usera w procentach (jak i rowniez pozycje usera w rankingu)

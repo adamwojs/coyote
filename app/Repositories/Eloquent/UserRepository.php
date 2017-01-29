@@ -4,6 +4,7 @@ namespace Coyote\Repositories\Eloquent;
 
 use Coyote\Repositories\Contracts\UserRepositoryInterface;
 use Coyote\User;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserRepository extends Repository implements UserRepositoryInterface
 {
@@ -72,6 +73,23 @@ class UserRepository extends Repository implements UserRepositoryInterface
     public function newUser(array $data)
     {
         return User::forceCreate($data);
+    }
+
+    /**
+     * @param string $order
+     * @param string $direction
+     * @param int $perPage
+     * @return LengthAwarePaginator
+     */
+    public function paginate($order = 'users.created_at', $direction = 'DESC', $perPage = 12)
+    {
+        $this->applyCriteria();
+
+        return $this
+            ->model
+            ->select(['id', 'name', 'photo', 'created_at', 'reputation', 'posts', 'firm', 'position'])
+            ->sortable($order, $direction, ['name', 'created_at', 'reputation', 'posts'], [])
+            ->paginate($perPage);
     }
 
     /**

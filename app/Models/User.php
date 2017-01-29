@@ -2,6 +2,7 @@
 
 namespace Coyote;
 
+use Coyote\Models\Scopes\Sortable;
 use Coyote\Notifications\ResetPasswordNotification;
 use Coyote\Services\Media\Photo;
 use Coyote\Services\Media\Factory as MediaFactory;
@@ -54,7 +55,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, Notifiable;
+    use Authenticatable, Authorizable, CanResetPassword, Notifiable, Sortable;
 
     /**
      * The database table used by the model.
