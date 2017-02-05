@@ -42,7 +42,21 @@
 
     &:last-child {
       border-bottom: none;
+      padding: 10px 0 0 0;
+      margin: 0;
+      text-align: center;
+
+      a {
+        color: darken($brand-primary, 10%);
+        font-weight: bold;
+        font-size: $font-size-small;
+      }
     }
+
+    &:last-child:after {
+      content: '';
+    }
+
     &:after {
       content: '1';
       font-size: 40px;
