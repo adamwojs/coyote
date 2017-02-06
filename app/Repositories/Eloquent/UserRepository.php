@@ -87,8 +87,8 @@ class UserRepository extends Repository implements UserRepositoryInterface
 
         return $this
             ->model
-            ->select(['id', 'name', 'photo', 'created_at', 'reputation', 'posts', 'firm', 'position'])
-            ->sortable($order, $direction, ['name', 'created_at', 'reputation', 'posts'], [])
+            ->select(['id', 'name', 'photo', 'created_at', 'reputation', 'posts', 'microblog', 'firm', 'position'])
+            ->sortable($order, $direction, ['name', 'created_at', 'reputation', 'posts', 'microblog'], [])
             ->paginate($perPage);
     }
 

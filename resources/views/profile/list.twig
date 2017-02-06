@@ -16,6 +16,7 @@
                         <li>{{ sortable('created_at', 'Data rejestracji') }}</li>
                         <li>{{ sortable('reputation', 'Reputacja') }}</li>
                         <li>{{ sortable('posts', 'Liczba postów') }}</li>
+                        <li>{{ sortable('microblog', 'Liczba wpisów na mikroblogu') }}</li>
                     </ul>
 
                     <div class="clearfix"></div>
@@ -40,6 +41,7 @@
                                 <td>{{ user.created_at|format_date(false) }}</td>
                                 <td><strong>{{ user.reputation }}</strong> reputacji</td>
                                 <td><strong>{{ user.posts }}</strong> postów</td>
+                                <td><strong>{{ user.microblog }}</strong> wpisów na mikroblogu</td>
                             </tr>
                         {% endfor %}
                         </tbody>
