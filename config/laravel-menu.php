@@ -26,7 +26,6 @@ return [
         'Forum' => ['route' => 'forum.home'],
         'Mikroblogi' => ['route' => 'microblog.home'],
         'Praca' => ['route' => 'job.home'],
-        'Pastebin' => ['route' => 'pastebin.show'],
         'Kompendium' => [
             'url' => 'Kategorie',
             'children' => [
@@ -43,7 +42,20 @@ return [
                 'CSS' => ['url' => 'CSS']
             ]
         ],
-        'Czat' => ['url' => 'http://chat.4programmers.net/']
+        'Inne' => [
+            'url' => 'javascript:void(0)',
+            'children' => [
+                'Czat' => [
+                    'url' => 'http://chat.4programmers.net/'
+                ],
+                'Pastebin' => [
+                    'route' => 'pastebin.show'
+                ],
+                'Użytkownicy' => [
+                    'route' => 'profile.list'
+                ]
+            ]
+        ]
     ],
     // _ na poczatku gdyz ten plugin korzysta z metody share() klasy View, a nazwa "forum" moze
     // wchodzic w konflikt z innymi zmiennymi przekazywanymi do twiga
